@@ -12,7 +12,7 @@ public interface FLBaseAct {
     /**
      * 设置layout
      */
-    void setContentView();
+    void setRootView();
 
     /**
      * 初始化控件

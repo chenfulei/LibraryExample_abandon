@@ -1,4 +1,4 @@
-package com.library.util;
+package com.library.utils;
 
 import android.util.Log;
 
@@ -41,11 +41,11 @@ public class Debug {
      * @param e
      */
     public static void Log(Throwable e) {
-        LogW(Log.getStackTraceString(e));
+        LogE(Log.getStackTraceString(e));
     }
 
     public static void Log(String tag, Throwable e) {
-        LogW(tag, Log.getStackTraceString(e));
+        LogE(tag, Log.getStackTraceString(e));
     }
 
     /**
