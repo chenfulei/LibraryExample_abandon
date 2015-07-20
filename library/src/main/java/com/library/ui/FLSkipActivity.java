@@ -23,10 +23,9 @@ public interface FLSkipActivity {
      * activity 跳转 (finish 当前activity)
      *
      * @param activity 当前activity
-     * @param cls      下一个activity
      * @param intent   传参数
      */
-    void skipActivity(Activity activity, Class<?> cls, Intent intent);
+    void skipActivity(Activity activity, Intent intent);
 
     /**
      * activity 跳转 (finish 当前activity)
@@ -52,13 +51,12 @@ public interface FLSkipActivity {
      * @param cls      next activity
      * @param intent   params
      */
-    void showActivity(Activity activity, Class<?> cls, Intent intent);
+    void showActivity(Activity activity, Intent intent);
 
     /**
      * activity 跳转 （没有finish 当前）
      *
      * @param activity 当前activity
-     * @param cls      next activity
      * @param bundle   params
      */
     void showActivity(Activity activity, Class<?> cls, Bundle bundle);

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import com.library.R;
 import com.library.constants.FLConstants;
 import com.library.utils.Debug;
 
@@ -89,14 +90,12 @@ public abstract class FLActivity extends FLFragmentActivity {
 
         if (FLConstants.isAnim) {
             if ("left".equals(FLConstants.isAnimDirection)) {
-
+                activity.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
 
             } else if ("right".equals(FLConstants.isAnimDirection)) {
-
-
+                activity.overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_from_right);
             }
         }
-
     }
 
     @Override
@@ -106,32 +105,65 @@ public abstract class FLActivity extends FLFragmentActivity {
 
     @Override
     public void skipActivity(Activity activity, Class<?> cls) {
-
+        showActivity(activity, cls);
+        activity.finish();
     }
 
     @Override
-    public void skipActivity(Activity activity, Class<?> cls, Intent intent) {
-
+    public void skipActivity(Activity activity, Intent intent) {
+        showActivity(activity, intent);
+        activity.finish();
     }
 
     @Override
     public void skipActivity(Activity activity, Class<?> cls, Bundle bundle) {
-
+        showActivity(activity, cls, bundle);
+        activity.finish();
     }
 
     @Override
     public void showActivity(Activity activity, Class<?> cls) {
+        Intent intent = new Intent(activity, cls);
+        activity.startActivity(intent);
 
+        if (FLConstants.isAnim) {
+            if ("left".equals(FLConstants.isAnimDirection)) {
+                activity.overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_from_right);
+
+            } else if ("right".equals(FLConstants.isAnimDirection)) {
+                activity.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
+            }
+        }
     }
 
     @Override
-    public void showActivity(Activity activity, Class<?> cls, Intent intent) {
+    public void showActivity(Activity activity, Intent intent) {
+        activity.startActivity(intent);
 
+        if (FLConstants.isAnim) {
+            if ("left".equals(FLConstants.isAnimDirection)) {
+                activity.overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_from_right);
+
+            } else if ("right".equals(FLConstants.isAnimDirection)) {
+                activity.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
+            }
+        }
     }
 
     @Override
     public void showActivity(Activity activity, Class<?> cls, Bundle bundle) {
+        Intent intent = new Intent(activity, cls);
+        intent.putExtras(bundle);
+        activity.startActivity(intent);
 
+        if (FLConstants.isAnim) {
+            if ("left".equals(FLConstants.isAnimDirection)) {
+                activity.overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_from_right);
+
+            } else if ("right".equals(FLConstants.isAnimDirection)) {
+                activity.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
+            }
+        }
     }
 
     /**
