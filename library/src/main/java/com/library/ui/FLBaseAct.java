@@ -27,7 +27,7 @@ public interface FLBaseAct {
     /**
      * 在线程中初始化数据 (这个有点问题)
      */
-    void initDataFromThread();
+//    void initDataFromThread();
 
     /**
      * 监听控件点击 (OnClick())

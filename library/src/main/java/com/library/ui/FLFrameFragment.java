@@ -34,7 +34,12 @@ public abstract class FLFrameFragment extends Fragment implements View.OnClickLi
         //×¢²á¹ã²¥
         registerBroadcast();
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
+    }
+
+    @Override
+    public View getView() {
+        return view;
     }
 
     /**
