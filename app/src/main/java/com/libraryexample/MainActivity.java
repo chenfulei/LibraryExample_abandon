@@ -38,6 +38,7 @@ public class MainActivity extends FLActivity {
     public void initWidget() {
         super.initWidget();
 
+
         mFragment = FragmentOne.newInstance();
         changeFragment(R.id.main_fragment, mFragment);
     }
@@ -56,6 +57,7 @@ public class MainActivity extends FLActivity {
                 break;
 
             case R.id.btn_two:
+                int i = 1 / 0;
                 changeFragment(R.id.main_fragment, FragmentTwo.newInstance());
                 break;
 
