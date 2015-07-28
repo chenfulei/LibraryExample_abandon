@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * UncaughtException´¦Àíµ±Ç°³ÌĞò·¢ÉúUncaughtÒì³£Ê±¾ÍÓÉ¸ÃÀàÀ´½Ó¹Ü³ÌĞò£¬²¢¼ÇÂ¼³ö´í±¨¸æ(È«¾ÖÒì³£´¦Àí)
+ * UncaughtExceptionå¤„ç†å½“å‰ç¨‹åºå‘ç”ŸUncaughtå¼‚å¸¸æ—¶å°±ç”±è¯¥ç±»æ¥æ¥ç®¡ç¨‹åºï¼Œå¹¶è®°å½•å‡ºé”™æŠ¥å‘Š(å…¨å±€å¼‚å¸¸å¤„ç†)
  * <p/>
  * Created by chen_fulei on 2015/7/27.
  */
@@ -50,7 +50,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     }
 
     /**
-     * ³õÊ¼»¯
+     * åˆå§‹åŒ–
      *
      * @param context
      * @param cls
@@ -66,7 +66,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
         if (!handleException(ex) && mDefaultHandler != null) {
-            // Èç¹ûÓÃ»§Ã»ÓĞ´¦ÀíÔòÈÃÏµÍ³Ä¬ÈÏµÄÒì³£´¦ÀíÆ÷À´´¦
+            // å¦‚æœç”¨æˆ·æ²¡æœ‰å¤„ç†åˆ™è®©ç³»ç»Ÿé»˜è®¤çš„å¼‚å¸¸å¤„ç†å™¨æ¥å¤„
             mDefaultHandler.uncaughtException(thread, ex);
         } else {
             try {
@@ -84,7 +84,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             AlarmManager mgr = (AlarmManager) mContext
                     .getSystemService(Context.ALARM_SERVICE);
             mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000,
-                    restartIntent); // 1ÃëÖÓºóÖØÆôÓ¦
+                    restartIntent); // 1ç§’é’Ÿåé‡å¯åº”
             android.os.Process.killProcess(android.os.Process.myPid());
 
         }
@@ -92,7 +92,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     /**
      * @param ex
-     * @return true:Èç¹û´¦ÀíÁË¸ÃÒì³£ĞÅÏ¢;·ñÔò·µ»Øfalse.
+     * @return true:å¦‚æœå¤„ç†äº†è¯¥å¼‚å¸¸ä¿¡æ¯;å¦åˆ™è¿”å›false.
      */
     private boolean handleException(Throwable ex) {
         if (ex == null) {
@@ -102,19 +102,19 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                FLHintUtil.toast(mContext, mContext.getString(R.string.app_carshhandler_toat));
+                FLHintUtil.toast(mContext, "å°†åœ¨1ç§’å†…é‡å¯ç¨‹åº");
                 Looper.loop();
             }
         }.start();
-        // ÊÕ¼¯Éè±¸²ÎÊıĞÅÏ¢
+        // æ”¶é›†è®¾å¤‡å‚æ•°ä¿¡æ¯
         collectDeviceInfo(mContext);
-        // ±£´æÈÕÖ¾ÎÄ¼ş
+        // ä¿å­˜æ—¥å¿—æ–‡ä»¶
         saveCrashInfo2File(ex);
         return true;
     }
 
     /**
-     * ÊÕ¼¯Éè±¸²ÎÊıĞÅÏ¢
+     * æ”¶é›†è®¾å¤‡å‚æ•°ä¿¡æ¯
      *
      * @param ctx
      */
@@ -144,10 +144,10 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     }
 
     /**
-     * ±£´æ´íÎóĞÅÏ¢µ½ÎÄ¼şÖĞ
+     * ä¿å­˜é”™è¯¯ä¿¡æ¯åˆ°æ–‡ä»¶ä¸­
      *
      * @param ex
-     * @return ·µ»ØÎÄ¼şÃû³Æ, ±ãÓÚ½«ÎÄ¼ş´«ËÍµ½·şÎñ
+     * @return è¿”å›æ–‡ä»¶åç§°, ä¾¿äºå°†æ–‡ä»¶ä¼ é€åˆ°æœåŠ¡
      */
     private String saveCrashInfo2File(Throwable ex) {
 
